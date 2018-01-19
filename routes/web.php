@@ -15,6 +15,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/produto/{id}', 'HomeController@produto')->name('produto');
+Route::get('/carrinho', 'CarrinhoController@index')->name('carrinho.index');
 
 // rotas do admin
 Route::group(['prefix' => 'admin'], function () {
