@@ -8,23 +8,26 @@ use App\Pedido;
 
 class CarrinhoController extends Controller
 {
-    function __construct() {
+    function __construct()
+    {
+        // obriga estar logado;
         $this->middleware('auth');
     }
-    
-    public function index() {
-        
+
+    public function index()
+    {
+
         $pedidos = Pedido::where([
-            'status' => 'RE',
+            'status'  => 'RE',
             'user_id' => Auth::id()
-        ])->get();
-        
+            ])->get();
+
         dd([
-            $pedidos, 
+            $pedidos,
             $pedidos[0]->pedido_produtos,
             $pedidos[0]->pedido_produtos[0]->produto
-        ]);
-        
+            ]);
+
         return view('carrinho.index', compact('pedidos'));
     }
 }
