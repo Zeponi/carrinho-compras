@@ -16,6 +16,10 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/produto/{id}', 'HomeController@produto')->name('produto');
 Route::get('/carrinho', 'CarrinhoController@index')->name('carrinho.index');
+Route::get('/carrinho/adicionar', function() {
+   return redirect()->route('index'); 
+});
+Route::post('/carrinho/adicionar', 'CarrinhoController@adicionar')->name('carrinho.adicionar');
 
 // rotas do admin
 Route::group(['prefix' => 'admin'], function () {
