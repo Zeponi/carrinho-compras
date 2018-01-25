@@ -7,6 +7,16 @@
     <div class="row">
         <h3>Produtos no carrinho</h3>
         <hr/>
+        @if (Session::has('mensagem-sucesso'))
+            <div class="card-panel green">
+                <strong>{{ Session::get('mensagem-sucesso') }}</strong>
+            </div>
+        @endif
+        @if (Session::has('mensagem-falha'))
+            <div class="card-panel red">
+                <strong>{{ Session::get('mensagem-falha') }}</strong>
+            </div>
+        @endif
         @forelse ($pedidos as $pedido)
             <h5 class="col l6 s12 m6"> Pedido: {{ $pedido->id }} </h5>
             <h5 class="col l6 s12 m6"> Criado em: {{ $pedido->created_at->format('d/m/Y H:i') }} </h5>
