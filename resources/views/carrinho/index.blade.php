@@ -43,15 +43,15 @@
                         </td>
                         <td class="center-align">
                             <div class="center-align">
-                                <a class="col l4 m4 s4" href="#">
+                                <a class="col l4 m4 s4" href="#" onclick="carrinhoRemoverProduto( {{ $pedido->id }}, {{ $pedido_produto->produto_id }}, 1 )">
                                     <i class="material-icons small">remove_circle_outline</i>
                                 </a>
                                 <span class="col l4 m4 s4"> {{ $pedido_produto->qtd }} </span>
-                                <a class="col l4 m4 s4" href="#">
+                                <a class="col l4 m4 s4" href="#" onclick="carrinhoAdicionarProduto( {{ $pedido_produto->produto_id }} )">
                                     <i class="material-icons small">add_circle_outline</i>
                                 </a>
                             </div>
-                            <a href="#" class="tooltipped" data-position="right" data-delay="50" data-tooltip="Retirar produto do carrinho?">Retirar produto</a>
+                            <a href="#" onclick="carrinhoRemoverProduto( {{ $pedido->id }}, {{ $pedido_produto->produto_id }}, 0 )" class="tooltipped" data-position="right" data-delay="50" data-tooltip="Retirar produto do carrinho?">Retirar produto</a>
                         </td>
                         <td> {{ $pedido_produto->produto->nome }} </td>
                         <td>R$ {{ number_format($pedido_produto->produto->valor, 2, ',', '.') }}</td>
@@ -78,26 +78,20 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<form id="form-remover-produto" method="POST" action="{{ route('carrinho.remover') }}">
+    {{ csrf_field() }}
+    {{ method_field('DELETE') }}
+    <input type="hidden" name="pedido_id">
+    <input type="hidden" name="produto_id">
+    <input type="hidden" name="item">
+</form>
+<form id="form-adicionar-produto" method="POST" action="{{ route('carrinho.adicionar') }}">
+    {{ csrf_field() }}
+    <input type="hidden" name="id">
+</form>
 
-    /* função de teste para método remover */
-    function removeProduto(p_idpedido, p_idproduto, p_item) {
-
-        $.ajax( {
-            url: "{{ route('carrinho.remover') }}",
-            method: "DELETE",
-            data: {
-                _token: "{{ csrf_token() }}",
-                pedido_id: p_idpedido,
-                produto_id: p_idproduto,
-                item: p_item
-            }
-        } )
-        .always(function() {
-            location.reload();
-        });
-    }
-
-</script>
+@push('scripts')
+    <script type="text/javascript" src="/js/carrinho.js"></script>
+@endpush
 
 @endsection
