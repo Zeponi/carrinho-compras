@@ -78,4 +78,26 @@
     </div>
 </div>
 
+<script type="text/javascript">
+
+    /* função de teste para método remover */
+    function removeProduto(p_idpedido, p_idproduto, p_item) {
+
+        $.ajax( {
+            url: "{{ route('carrinho.remover') }}",
+            method: "DELETE",
+            data: {
+                _token: "{{ csrf_token() }}",
+                pedido_id: p_idpedido,
+                produto_id: p_idproduto,
+                item: p_item
+            }
+        } )
+        .always(function() {
+            location.reload();
+        });
+    }
+
+</script>
+
 @endsection

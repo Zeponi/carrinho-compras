@@ -20,6 +20,7 @@ Route::get('/carrinho/adicionar', function() {
    return redirect()->route('index'); 
 });
 Route::post('/carrinho/adicionar', 'CarrinhoController@adicionar')->name('carrinho.adicionar');
+Route::delete('/carrinho/remover', 'CarrinhoController@remover')->name('carrinho.remover');
 
 // rotas do admin
 Route::group(['prefix' => 'admin'], function () {
