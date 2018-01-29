@@ -21,7 +21,11 @@ class Pedido extends Model
             ->orderBy('produto_id', 'desc');
     }
     
-    public static function consultaId($where) {
+    public function pedido_produtos_itens() {
+        return $this->hasMany('App\PedidoProduto');
+    }
+
+        public static function consultaId($where) {
         $pedido = self::where($where)->first(['id']);
         return !empty($pedido->id) ? $pedido->id : null;
     }

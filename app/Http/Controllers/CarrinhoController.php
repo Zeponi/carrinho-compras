@@ -175,7 +175,12 @@ class CarrinhoController extends Controller
             'user_id' => Auth::id()
             ])->orderBy('created_at', 'desc')->get();
 
-        return $compras;
+        $cancelados = Pedido::where([
+            'status'  => 'CA',
+            'user_id' => Auth::id()
+            ])->orderBy('updated_at', 'desc')->get();
+
+        return view('carrinho.compras', compact('compras', 'cancelados'));
 
     }
 }
