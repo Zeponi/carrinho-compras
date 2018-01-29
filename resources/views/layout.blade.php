@@ -20,6 +20,7 @@
                 <a href="{{ route('index') }}" class="brand-logo col offset-l1">Loja virtual</a>
                 <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ route('carrinho.index') }}">Carrinho</a></li>
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Entrar</a></li>
                         <li><a href="{{ url('/register') }}">Cadastre-se</a></li>
