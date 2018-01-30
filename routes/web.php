@@ -23,6 +23,7 @@ Route::post('/carrinho/adicionar', 'CarrinhoController@adicionar')->name('carrin
 Route::delete('/carrinho/remover', 'CarrinhoController@remover')->name('carrinho.remover');
 Route::post('/carrinho/concluir', 'CarrinhoController@concluir')->name('carrinho.concluir');
 Route::get('/carrinho/compras', 'CarrinhoController@compras')->name('carrinho.compras');
+Route::post('/carrinho/cancelar', 'CarrinhoController@cancelar')->name('carrinho.cancelar');
 
 // rotas do admin
 Route::group(['prefix' => 'admin'], function () {
